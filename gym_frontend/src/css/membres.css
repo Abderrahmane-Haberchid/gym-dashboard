@@ -1,0 +1,72 @@
+
+.container{
+    margin-top: 40px;
+    display: flexbox;
+    min-width: 900px;
+    z-index: 50;
+}
+.table-header{
+    display: flex;
+    flex-direction: row;
+    gap: 480px;
+    margin-bottom: -30px;
+    position: relative;
+    z-index: 51;
+}
+.add-btn{
+    margin-left:155px;
+    justify-content: left;
+}
+.sorting-option{
+    justify-content: right;
+    margin-right: 55px;
+}
+.sorting-option span{
+    color: var(--text-color);
+    font-size: 18px;
+    margin-right: 20px;
+}
+.sorting-list{
+    width: 150px;
+    background: var(--sidebar-color);
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 10px;
+    border: 1px solid var(--toggle-color);
+    color: var(--text-color);
+}
+
+/*------Add Member Form-----*/
+
+.compte-container{   
+    margin: 0;
+    padding: 0;
+    background: var(--sidebar-color);
+}
+.form-container{
+    display: flex;
+    justify-content: center;     
+}
+.names-div{
+    display: flex;
+}
+.form-container input{
+    color: var(--text-color);
+    background-color: transparent;
+    
+}
+.form-container input:focus{
+    color: var(--text-color);
+    background-color: transparent;
+}
+.form-container input::placeholder {
+    color: var(--text-color);
+  }
+
+
+@media (max-width: 700px) {
+    .table-header{
+        flex-direction: column;
+    }
+  }

@@ -27,7 +27,6 @@
     justify-content: left;
     max-width: 900px;
     left: 150px;
-    overflow: hidden;
 }
 .header-container{
     max-width: fit-content;

@@ -1,6 +1,6 @@
 .app{
     background: var(--body-color);              
-    position: relative;
+   
     transition: var(--tran-03);
 }
 .app.dark{

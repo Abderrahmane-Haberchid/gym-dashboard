@@ -107,7 +107,7 @@ function Statis() {
     }
   return (
     
-    <div class="container">
+    <div class="statis-container">
     <div className='header-container'>
         <div className='membre-card'>
         <i class="fa-solid fa-user fa-2xl"></i>

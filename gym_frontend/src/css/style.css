@@ -39,7 +39,7 @@
     padding: 0px;
     transition: var(--tran-02);
     box-shadow: 5px;
-    z-index: 50;
+    
 }
 .header{
     display: flex;

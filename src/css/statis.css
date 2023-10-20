@@ -39,12 +39,14 @@
     gap:2rem;
     transition: var(--tran-03);
 }
-@media (max-width: 650px) {
+@media (max-width: 850px) {
     .header-container{
         display: block;
     }
     .membre-card{
         margin-bottom: 10px;
+        width: 300px;
+        
     }
     .ajoutecemois-card{
         margin-bottom: 10px;

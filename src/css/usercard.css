@@ -12,17 +12,16 @@
     transition: var(--tran-03);
     background: var(--body-color);
 }
-@media (max-width: 650px) {
-    .usercard-list {
-        max-width: 600px;
-        left: 100px;
-        overflow: hidden;
-    }
-  }
-  @media (max-width: 750px) {
+
+  @media screen and (max-width: 750px) {
     .usercard-list {
         max-width: 700px;
-        left: 100px;
+        left: 120px;
+    }
+  }  @media screen and (max-width: 850px) {
+    .usercard-list {
+        max-width: 800px;
+        left: 120px;
     }
   }
 .usercard{    

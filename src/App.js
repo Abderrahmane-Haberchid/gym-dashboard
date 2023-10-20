@@ -15,7 +15,7 @@ function App() {
         
       <Sidebar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/gym-dashboard" element={<Home />} />
         <Route path="/statistiques" element={<Statis />} />
         <Route path="/membres" element={<Membres />} />
       </Routes>

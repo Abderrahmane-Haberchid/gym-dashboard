@@ -67,7 +67,7 @@ function Sidebar() {
         <div className='sidebar-list'>
             <ul>
                 <li>
-                    <Link to='/' className='links'>
+                    <Link to='/gym-dashboard' className='links'>
                         <i className='bx bx-home-alt bx-sm icon' ></i> 
                         <span className='text'>Acceuil</span>
                     </Link>

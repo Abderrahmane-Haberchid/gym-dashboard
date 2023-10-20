@@ -12,12 +12,31 @@
     transition: var(--tran-03);
     background: var(--body-color);
 }
-
+@media screen and (width: 450px) {
+    .usercard-list {
+        max-width: 400px;
+        left: 100px;
+    }
+    .search-container{
+        margin-right: 10px;
+    }
+    .search-input{
+        width: 150px;
+    }
+    .usercard{    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 150px;
+       }
+  }  
   @media screen and (max-width: 750px) {
     .usercard-list {
         max-width: 700px;
         left: 120px;
     }
+    
   }  @media screen and (max-width: 850px) {
     .usercard-list {
         max-width: 800px;

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/gym-dashboard/static/css/main.e946826a.css",
+    "main.js": "/gym-dashboard/static/js/main.8b966071.js",
+    "static/js/787.0bfeb70d.chunk.js": "/gym-dashboard/static/js/787.0bfeb70d.chunk.js",
+    "static/media/avatar.jpg": "/gym-dashboard/static/media/avatar.8e7ab55da0bc52271ed8.jpg",
+    "index.html": "/gym-dashboard/index.html",
+    "main.e946826a.css.map": "/gym-dashboard/static/css/main.e946826a.css.map",
+    "main.8b966071.js.map": "/gym-dashboard/static/js/main.8b966071.js.map",
+    "787.0bfeb70d.chunk.js.map": "/gym-dashboard/static/js/787.0bfeb70d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e946826a.css",
+    "static/js/main.8b966071.js"
+  ]
+}

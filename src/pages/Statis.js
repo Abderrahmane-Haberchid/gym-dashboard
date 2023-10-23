@@ -138,7 +138,7 @@ function Statis() {
 
         <div className='money-monthly'>  
           <p>Situation Financiére:</p>
-            <Line data={data4} options={options} width={680} height={320} />
+            <Line data={data4} options={options} className='first-chart' />
         </div>
 
         <div className='total-money-monthly'>

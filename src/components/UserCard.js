@@ -53,24 +53,22 @@ function UserCard() {
         setShowActions(false)
         setShowPayments(false)  
       }
-
+      const dataLoader = async () => {
+              await axios.get(`http://localhost:8081/api/v1/membres/all`)
+                      .then(res => {
+                        const data = res.data
+                        setUsers(data)
+                        setPending(false)
+                      }) 
+      }
       useEffect(() => {
-        return( 
-          async () => {
-          await axios.get(`https://fakerapi.it/api/v1/users?_quantity=50`)
-          .then(res => {
-            const data = res.data
-            setUsers(data.data)
-            setPending(false)
-          }) 
-          
-        })
+          dataLoader()
+        
       }, [])
-
+      console.log(users)
       const handleSearch = (e) => {
         setSearch(e.target.value)         
        }
-      
     
   return (
     <> 
@@ -82,13 +80,13 @@ function UserCard() {
     </div>
     <div className='usercard-list'>
     
-    { pending === false &&    
+    { pending === false &&
     users.filter((user) =>{
-        return search.toLowerCase() === '' ? user : user.firstname.toLowerCase().includes(search)
+        return search.toLowerCase() === '' ? user : user.nom.toLowerCase().includes(search)
     })
-    .map((user, index) =>
-
-    <Link to="/" className='usercard shadow' onClick={handleShow}>
+    .map((user) =>
+  
+    <Link to="/gym-dashboard" key={user.id_membre} className='usercard shadow' onClick={handleShow}>
                 <ul className="list-iems-card">   
                 <li>
                     <img src={avatar} alt="" width="70" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
@@ -96,10 +94,10 @@ function UserCard() {
                     {payment === false && <i class="fa-solid fa-triangle-exclamation bx-sm payment-state-nok"></i>}
                 </li>
                 <li>
-                    <p className="card-title">{user.firstname}</p>
+                    <p className="card-title">{user.nom}</p>
                 </li>
                 <li>
-                    <span className="card-subtitle">29ans</span>
+                    <span className="card-subtitle">{user.age}</span>
                 </li>                                
                 </ul>
            

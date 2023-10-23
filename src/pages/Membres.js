@@ -12,30 +12,38 @@ import axios from 'axios'
 import TableLoader from '../components/TableLoader'
 import React from 'react'
 import avatar from '../img/avatar.jpg'
-import z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 function Membres() {
 
     {/*--------Handle Add Member submit-------*/}  
 
-    const membreSchema = z.object({
+   {/* const membreSchema = z.object({
         lname: z.string().min(3, {message: 'Doit avoir au moins 3 caractéres'}).toLowerCase(),
         fname: z.string().min(3, {message: 'Doit avoir au moins 3 caractéres'}).toLowerCase(),
         email: z.string().email({message: 'Adresse mail invalide'}).toLowerCase(),
         telephone: z.number().min(10, {message: 'Doit contenir au moins 10 chiffres'}),
         adresse: z.string().min(15, {message: 'Adresse trop courte'}).toLowerCase()
-      })
+      }) */}
+      
       const {
         register,
         handleSubmit,
-        formState: {errors, isSubmitting},
-        reset,
-      } = useForm({resolver: zodResolver(membreSchema)})
+        formState: {isLoading}
+      } = useForm()
 
-      const onSubmit = async (FieldValues) => {
-            await axios.post(`http://localhost:8081/api/v1/membres/save/${FieldValues}`)                       
+      const onSubmit = async (data) => {            
+            try{
+                const jsonData = JSON.stringify(data)
+            const response = await axios.post(`http://localhost:8081/api/v1/membres/save`, jsonData, {headers: {'Content-Type': 'application/json'}})       
+            console.log(response)  
+            
+            }
+            catch(errors){
+               alert(errors)
+            }
+            
+
       }
 
     const [rows, setRows] = useState([])
@@ -47,10 +55,10 @@ function Membres() {
 
     const fetchdata = async () =>{
         
-        await axios.get(`https://fakerapi.it/api/v1/users?_quantity=100`)
+        await axios.get(`http://localhost:8081/api/v1/membres/all`)
         .then(res =>{
           const data = res.data
-          const response = data.data 
+          const response = data
           setRows(response)   
           setPending(false)
         })
@@ -60,7 +68,7 @@ function Membres() {
         setSearch(e.target.value.toLowerCase())         
        }
       const filteredData = search === '' ? rows : rows.filter((users) => {
-            return users.username.toLowerCase().includes(search)
+            return users.nom.toLowerCase().includes(search)
         })
 
     useEffect(() => {           
@@ -108,7 +116,7 @@ function Membres() {
         setShowActions(false)
         setShowPayments(false)  
       }
-    {/*----------Handling add Form display------------*/}  
+    {/*----------displaying add Form ------------*/}  
       const [addUserForm, setAddUserForm] = useState(false)
 
       const handleCloseAddUserForm = () => setAddUserForm(false)
@@ -126,43 +134,43 @@ function Membres() {
         },
         {            
             name: "Nom",
-            selector: row => row.username,
+            selector: row => row.nom,
             sortable: true,
             width: "120px"
         },
         {
             name: "Prénom",
-            selector: row => row.ip,
+            selector: row => row.prenom,
             sortable: true,
             width: "120px"
         },
         {            
             name: "Créé le",
-            selector: row => row.username,
+            selector: row => row.date_inscription,
             sortable: true,
             width: "120px"
         },
         {            
             name: "Dérnier Paiment",
-            selector: row => row.username,
+            selector: row => row.date_update,
             sortable: true,
             width: "170px"
         },
         {            
             name: "Prix",
-            selector: row => row.username,
+            selector: row => row.age,
             sortable: true,
             width: "100px"
         },
         {            
             name: "Statut",
-            selector: row => row.username,
+            selector: row => row.statut,
             sortable: true,
             width: "100px"
         },
         {            
             name: "Etat",
-            selector: row => row.username,
+            selector: row => row.state,
             sortable: true,
             width: "100px"
         }
@@ -297,7 +305,7 @@ function Membres() {
                 Nom:
             </label>
             <input type='text'
-                   {...register('lname')}
+                   {...register('nom')}
                    className='form-control' 
                    placeholder="Veuillez écrire le nom..." />
             
@@ -306,7 +314,7 @@ function Membres() {
             </label>
             
             <input type='text' 
-                   {...register('fname')} 
+                   {...register('prenom')} 
                    className='form-control' 
                    placeholder="Veuillez écrire le prénom..." />
             </div>
@@ -341,7 +349,7 @@ function Membres() {
             <div className='submit-btn mb-4'>
                 <button 
                     className='btn btn-success'
-                    disabled={isSubmitting}>
+                    disabled={isLoading}>
                     Valider</button>
             </div>
        </form> 

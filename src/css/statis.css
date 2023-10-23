@@ -39,14 +39,25 @@
     gap:2rem;
     transition: var(--tran-03);
 }
-@media (max-width: 850px) {
+.first-chart{
+    width: 680;
+    height: 320px;
+}
+@media screen and (max-width: 420px) {
+    .statis-container{
+        display: block;
+        width: 100%;
+        left: 10px;
+        justify-content: center;
+    }
     .header-container{
         display: block;
+        width: 100%;        
     }
     .membre-card{
         margin-bottom: 10px;
-        width: 300px;
-        
+        width: 400px;
+        height: 60px;
     }
     .ajoutecemois-card{
         margin-bottom: 10px;
@@ -60,7 +71,12 @@
     .money-monthly{
         width: 340px;
     }
-
+    .money-monthly{
+        width: 400px;
+    }
+    .first-chart{
+        width: 400;
+    }
   }
 .membre-card{
     display: flex;

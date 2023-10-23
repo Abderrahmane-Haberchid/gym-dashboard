@@ -12,36 +12,32 @@
     transition: var(--tran-03);
     background: var(--body-color);
 }
-@media screen and (width: 450px) {
+@media screen and (max-width: 420px) {
     .usercard-list {
         max-width: 400px;
         left: 100px;
+        gap:.5rem;
     }
-    .search-container{
-        margin-right: 10px;
-    }
-    .search-input{
-        width: 150px;
+    .sidebar{
+        display: none;;
     }
     .usercard{    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 140px;
-        height: 150px;
+        width: 200px;
+        height: 120px;
+        overflow-x: hidden;
+       }
+       .img-fluid{
+        width: 60px;
+       }
+       .search-input{
+        width: 130px;
        }
   }  
-  @media screen and (max-width: 750px) {
-    .usercard-list {
-        max-width: 700px;
-        left: 120px;
-    }
+  @media screen and (min-width: 750px) {
+    
     
   }  @media screen and (max-width: 850px) {
-    .usercard-list {
-        max-width: 800px;
-        left: 120px;
-    }
+    
   }
 .usercard{    
     display: flex;

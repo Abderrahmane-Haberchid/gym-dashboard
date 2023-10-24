@@ -138,17 +138,17 @@ function Statis() {
 
         <div className='money-monthly'>  
           <p>Situation Financiére:</p>
-            <Line data={data4} options={options} className='first-chart' />
+            <Line data={data4} options={options} width={680} height={320} className='chart1' />
         </div>
 
         <div className='total-money-monthly'>
         <p>Situation Financiére Globale:</p>
-            <Line data={data6} options={options} height={320} />
+            <Line data={data6} options={options} />
         </div>
 
         <div className='added-member-monthly'> 
         <p>Etat des nouvelles Inscriptions:</p> 
-            <Bar data={data1} options={options} height={320} />
+            <Bar data={data1} options={options} />
         </div>
 
         <div className='added-payments-monthly'>

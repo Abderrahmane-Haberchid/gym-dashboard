@@ -6,6 +6,14 @@ import { Link } from 'react-router-dom';
 
 function Sidebar() {
 
+    const displayMenu = () => {
+        const sidebar = document.getElementById('sidebarid')
+        if (sidebar.style.transform == 'translateX(0px)') {
+            sidebar.style.transform = 'translateX(-230px)'    
+        }
+        else sidebar.style.transform = 'translateX(0px)'
+        }
+
     const [click, setClick] = useState(false);
     function hidesidebar(){
         
@@ -54,13 +62,16 @@ function Sidebar() {
 
   return (
     <>
-    <div className="sidebar">
+    <div className="sidebar" id="sidebarid">
 
         <div className='header'>
             <div className='logo'>
                 <i className='bx bx-dumbbell bx-md logo-img'></i>
                 <span className='logo-text'>GYM ROYAL</span>
             </div>    
+            <div className='burger-menu'>
+              <i className='fa-solid fa-bars fa-xl burger' onClick={displayMenu}></i>
+            </div>
                {click === false && <i className='bx bx-chevron-left bx-sm toggle' onClick={hidesidebar}></i>}
                {click === true && <i className='bx bx-chevron-right bx-sm toggle' onClick={hidesidebar}></i>}
         </div>

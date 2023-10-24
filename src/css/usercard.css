@@ -1,6 +1,7 @@
 
 
 /*------User card -------------*/
+
 .usercard-list{
     position: relative;    
     max-width: 1090px;
@@ -12,32 +13,49 @@
     transition: var(--tran-03);
     background: var(--body-color);
 }
-@media screen and (max-width: 420px) {
+@media all and (min-width: 320px) and (max-width: 480px){ 
     .usercard-list {
-        max-width: 400px;
-        left: 100px;
-        gap:.5rem;
-    }
-    .sidebar{
-        display: none;;
+        width: auto;
+        left: 30px;
+        gap:1.3rem;
     }
     .usercard{    
         width: 200px;
         height: 120px;
+       }
+       .img-fluid{
+        width: 60px;
+       }
+       
+  }  
+  @media all and (min-width: 480px) and (max-width: 768px){     
+    .usercard-list {
+        width: auto;
+        left: 30px;
+        gap:1.5rem;
+    }
+    .usercard{    
+        width: 220px;
+        height: 230px;
         overflow-x: hidden;
        }
        .img-fluid{
         width: 60px;
        }
-       .search-input{
-        width: 130px;
-       }
   }  
-  @media screen and (min-width: 750px) {
-    
-    
-  }  @media screen and (max-width: 850px) {
-    
+  @media all and (min-width: 780px) and (max-width: 1024px) {
+    .usercard-list {
+        width: auto;
+        gap:1.5rem;
+    }
+    .usercard{    
+        width: 220px;
+        height: 230px;
+        overflow-x: hidden;
+       }
+       .img-fluid{
+        width: 60px;
+       }
   }
 .usercard{    
     display: flex;

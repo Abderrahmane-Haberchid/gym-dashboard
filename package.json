@@ -1,6 +1,6 @@
 {
   "homepage": "https://Abderrahmane-Haberchid.github.io/gym-dashboard",
-  "name": "gym_frontend",
+  "name": "gym-dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

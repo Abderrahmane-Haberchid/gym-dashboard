@@ -39,26 +39,38 @@
     gap:2rem;
     transition: var(--tran-03);
 }
-.first-chart{
-    width: 680;
-    height: 320px;
-}
-@media screen and (max-width: 420px) {
+
+@media all and (min-width: 320px) and (max-width: 480px){ 
     .statis-container{
-        display: block;
-        width: 100%;
-        left: 10px;
+        display: flex;
+        width: auto;
         justify-content: center;
+        left: 0;
+    }
+    .money-monthly{
+        height: 400px;
+        width: 400px;
     }
     .header-container{
         display: block;
-        width: 100%;        
+        width: auto;        
     }
     .membre-card{
         margin-bottom: 10px;
         width: 400px;
-        height: 60px;
+        height: 30px;
     }
+    .body-container{
+        width: auto;
+        margin-top: 60px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;    
+        flex-direction: column;
+        gap:1rem;
+        transition: var(--tran-03);
+    }
+
     .ajoutecemois-card{
         margin-bottom: 10px;
     }
@@ -68,15 +80,24 @@
     .payment-card{
         margin-bottom: 10px;
     }
+    
     .money-monthly{
-        width: 340px;
-    }
-    .money-monthly{
-        width: 400px;
+        position: relative;
+        margin: auto;
     }
     .first-chart{
-        width: 400;
     }
+  }
+  @media all and (min-width: 480px) and (max-width: 768px){  
+    .statis-container{
+        display: block;
+        width: 100%;
+        left: 20px;
+        justify-content: center;
+    }
+  }
+  @media all and (min-width: 780px) and (max-width: 1024px) {
+
   }
 .membre-card{
     display: flex;

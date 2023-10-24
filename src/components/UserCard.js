@@ -29,6 +29,12 @@ function UserCard() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const displayMenu = () => {
+      document.querySelector('burger').addEventListener('click', {
+          
+      })
+    }
+
     const changeProfile = () => {
       setShowProfile(true)
       setShowActions(false)
@@ -72,7 +78,10 @@ function UserCard() {
     
   return (
     <> 
+    
+
     <div className='search-container'>
+          
           <div>
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type='text' className='search-input' placeholder='Chercher par Nom' onChange={handleSearch} />

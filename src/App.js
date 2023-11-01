@@ -2,6 +2,7 @@
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home';
 import Sidebar from './components/Sidebar'
 import Statis from './pages/Statis';
@@ -11,6 +12,7 @@ function App() {
   
   return (
     <div className='app'>
+      <div><Toaster/></div>
     <Router>
         
       <Sidebar />

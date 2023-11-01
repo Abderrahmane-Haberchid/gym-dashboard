@@ -39,7 +39,10 @@
     gap:2rem;
     transition: var(--tran-03);
 }
-
+.chart2{
+    height: 320px;
+    width: 320px;
+}
 @media all and (min-width: 320px) and (max-width: 480px){ 
     .statis-container{
         display: flex;

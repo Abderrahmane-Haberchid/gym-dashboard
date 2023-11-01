@@ -143,7 +143,7 @@ function Statis() {
 
         <div className='total-money-monthly'>
         <p>Situation Financiére Globale:</p>
-            <Line data={data6} options={options} />
+            <Line data={data6} options={options} className='chart2' />
         </div>
 
         <div className='added-member-monthly'> 

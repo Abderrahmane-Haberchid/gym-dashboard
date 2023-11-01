@@ -7,14 +7,15 @@ import { faBold } from '@fortawesome/free-solid-svg-icons'
 
 
 
-function PaymentsContent() {
+function PaymentsContent(props) {
 
     const [rows, setRows] = useState([])
     const [pending, setPending] = useState(true);
+    const id = props.membreId
 
     const fetchdata = async () =>{
         
-        await axios.get(`https://fakerapi.it/api/v1/users?_quantity=500`)
+        await axios.get(`http://localhost:8081/api/v1/payments/all/${id}`)
         .then(res =>{
           const data = res.data
           setRows(data.data)   
@@ -29,8 +30,8 @@ function PaymentsContent() {
 
     const columns = [
         {
-            name: "id",
-            selector: row => row.id,
+            name: "Prix",
+            selector: row => row.prix,
             sortable: true,
             width: "70px"
         },
@@ -40,11 +41,17 @@ function PaymentsContent() {
             sortable: true,
         },
         {
-            name: "Prix",
+            name: "Abonnement",
             selector: row => row.ip,
             sortable: true,
             width: "100px"
         },
+        {
+            name: "Type",
+            selector: row => row.ip,
+            sortable: true,
+            width: "100px"
+        }
         
     ]
 

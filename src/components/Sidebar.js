@@ -6,12 +6,19 @@ import { Link } from 'react-router-dom';
 
 function Sidebar() {
 
+    const [menuIcon, setMenuIcon] = useState("fa-solid fa-bars fa-xl burger")
+
     const displayMenu = () => {
         const sidebar = document.getElementById('sidebarid')
         if (sidebar.style.transform == 'translateX(0px)') {
             sidebar.style.transform = 'translateX(-230px)'    
+            setMenuIcon('fa-solid fa-bars fa-xl burger')
+            
         }
-        else sidebar.style.transform = 'translateX(0px)'
+        else {
+            sidebar.style.transform = 'translateX(0px)'
+            setMenuIcon('fa-solid fa-xmark fa-xl burger')
+            }
         }
 
     const [click, setClick] = useState(false);
@@ -70,7 +77,7 @@ function Sidebar() {
                 <span className='logo-text'>GYM ROYAL</span>
             </div>    
             <div className='burger-menu'>
-              <i className='fa-solid fa-bars fa-xl burger' onClick={displayMenu}></i>
+              <i className={(menuIcon)} onClick={displayMenu}></i>
             </div>
                {click === false && <i className='bx bx-chevron-left bx-sm toggle' onClick={hidesidebar}></i>}
                {click === true && <i className='bx bx-chevron-right bx-sm toggle' onClick={hidesidebar}></i>}
@@ -126,10 +133,10 @@ function Sidebar() {
                             onChange={switchMode}                             
                             defaultChecked={localStorage.getItem('mode') === 'dark' && true} 
                       />
-                      <label for="checkbox" className="checkbox-label">
-                          <i class="fas fa-sun"></i>
-                          <i class="fas fa-moon"></i>                    
-                          <span class="ball"></span>
+                      <label htmlFor="checkbox" className="checkbox-label">
+                          <i className="fas fa-sun"></i>
+                          <i className="fas fa-moon"></i>                    
+                          <span className="ball"></span>
                       </label>
         </div>
         

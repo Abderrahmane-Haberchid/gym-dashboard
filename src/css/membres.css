@@ -8,7 +8,7 @@
 .table-header{
     display: flex;
     flex-direction: row;
-    gap: 480px;
+    
     margin-bottom: -30px;
     position: relative;
     z-index: 51;

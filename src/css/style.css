@@ -31,7 +31,7 @@
     right: -40px;
     margin-top: 10px;
     position: absolute;
-    display: none;
+    display: none;  
 }
 @media all and (min-width: 320px) and (max-width: 480px){ 
     .burger{

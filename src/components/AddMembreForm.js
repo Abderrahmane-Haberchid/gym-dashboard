@@ -1,9 +1,10 @@
 
-import { useState, useEffect, React } from 'react'
+import { React } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { Navigate } from 'react-router-dom'
 
 function AddMembreForm(props) {
 
@@ -20,6 +21,7 @@ function AddMembreForm(props) {
         await axios.post(`http://localhost:8081/api/v1/membres/save`, jsonData, {headers: {'Content-Type': 'application/json'}})       
         .then(response =>{
             if(response.status === 201 ) toast.success('Membre ajouté')
+            Navigate("/gym_dashboard")
         })
         .catch(errors => {
             if(errors.response.status === 302) toast.error("Adresse mail déjà existante !")

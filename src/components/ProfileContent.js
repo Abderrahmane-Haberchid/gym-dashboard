@@ -21,7 +21,7 @@ function ProfileContent(props) {
     }, [])
 
     //checking payment state
-    const cssStatut = membre.statut === "paid" ? "td-payment" : "td-payment-nok"
+    const cssStatut = membre.statut === "Paid" ? "td-payment" : "td-payment-nok"
     
   return (
     <div className='profile-content'>
@@ -58,6 +58,7 @@ function ProfileContent(props) {
                                     <td><b>Age</b></td>
                                     <td>{membre.age}ans</td>
                                 </tr>
+                               
                         </table>
 
                        }

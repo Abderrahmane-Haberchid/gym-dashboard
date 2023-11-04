@@ -31,9 +31,7 @@ function Membres() {
         
         await axios.get(`http://localhost:8081/api/v1/membres/all`)
         .then(res =>{
-          const data = res.data
-          const response = data
-          setRows(response)   
+          setRows(res.data.sort((a, b) => b.id_membre - a.id_membre))   
           setPending(false)
         })
       }     

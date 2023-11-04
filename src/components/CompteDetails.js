@@ -47,11 +47,9 @@ function CompteDetails(props) {
         setShowActions(false)
         setShowPayments(false)  
       }
-      let id = 0;
+      //let id = 0;
+      const id = props.idmembre === "" ? "" : props.idmembre
       
-      if (props.idmembre != "") {
-        id = props.idmembre;  
-      }
       console.log(id)
       const loadMembre = async () => {
                 

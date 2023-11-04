@@ -45,6 +45,7 @@ function AddPayment(props) {
                         {...register("type_paiement")} 
                         className='abtInput-text'>
                         <option selected>Mensuel</option>
+                        <option>Par jour</option>
                         <option>Par 3mois</option>
                         <option>Par 6mois</option>
                         <option>Annuel</option>

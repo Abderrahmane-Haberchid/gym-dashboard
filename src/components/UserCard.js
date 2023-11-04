@@ -8,7 +8,6 @@ import axios from 'axios';
 import CompteDetails from './CompteDetails';
 
 function UserCard() {
-    let payment = true
 
     const [users, setUsers] = useState([])
     const [showCompte, setShowCompte] = useState(false)
@@ -26,9 +25,12 @@ function UserCard() {
               await axios.get(`http://localhost:8081/api/v1/membres/all`)
                       .then(res => {
                         const data = res.data
-                        setUsers(data)
+                        setUsers(data.sort((a, b) => b.id_membre - a.id_membre))
                         setPending(false)
-                      }) 
+                      })
+                      .catch(errors => {
+                        console.log(errors)
+                      })
       }
       useEffect(() => {
           dataLoader()
@@ -61,8 +63,8 @@ function UserCard() {
                 <ul className="list-iems-card">   
                 <li>
                     <img src={avatar} alt="" width="70" className="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" />
-                    {user.statut === "paid" && <i className='bx bx-checkbox-checked bx-md payment-state-ok' ></i>}
-                    {user.statut === "unpaid" && <i className="fa-solid fa-triangle-exclamation bx-sm payment-state-nok"></i>}
+                    {user.statut === "Paid" && <i className='bx bx-checkbox-checked bx-md payment-state-ok' ></i>}
+                    {user.statut === "Unpaid" && <i className="fa-solid fa-triangle-exclamation bx-sm payment-state-nok"></i>}
                     
                     {user.statut === "Bundled" && <i className="fa-solid fa-ban fa-lg payment-state-nok"></i>}
                 </li>

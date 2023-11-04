@@ -3,22 +3,20 @@ import '../css/payment.css'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import LoaderTablePayments from './LoaderTablePayments'
-import { faBold } from '@fortawesome/free-solid-svg-icons'
 
 
 
 function PaymentsContent(props) {
 
-    const [rows, setRows] = useState([])
+    const [payment, setPayment] = useState([])
     const [pending, setPending] = useState(true);
     const id = props.membreId
 
     const fetchdata = async () =>{
         
-        await axios.get(`http://localhost:8081/api/v1/payments/all/${id}`)
+        await axios.get(`http://localhost:8081/api/v1/membres/id/${id}`)
         .then(res =>{
-          const data = res.data
-          setRows(data.data)   
+          setPayment(res.data.paiementsSet.sort((a, b) => b.id - a.id))
           setPending(false)
         })
       }
@@ -27,30 +25,23 @@ function PaymentsContent(props) {
        fetchdata()        
     }, [])
     
-
+    
     const columns = [
         {
             name: "Prix",
-            selector: row => row.prix,
+            selector: row => row.prix + " DH",
             sortable: true,
-            width: "70px"
+            width: "90px"
         },
         {            
             name: "Date",
-            selector: row => row.username,
+            selector: row => row.date_paiement,
             sortable: true,
         },
         {
-            name: "Abonnement",
-            selector: row => row.ip,
-            sortable: true,
-            width: "100px"
-        },
-        {
-            name: "Type",
-            selector: row => row.ip,
-            sortable: true,
-            width: "100px"
+            name: "Expiration",
+            selector: row => row.date_expiration,
+            sortable: true
         }
         
     ]
@@ -69,7 +60,7 @@ function PaymentsContent(props) {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
               fontWeight: 'bold',
-              fontSize: '14px',
+              fontSize: '12px',
               transition: 'var(--tran-03)'
           }
       },
@@ -77,6 +68,7 @@ function PaymentsContent(props) {
           style: {
               backgroundColor: 'var(--sidebar-color)',
               color: 'var(--text-color)',
+              fontSize: '11px',
               transition: 'var(--tran-03)'
           }
       }
@@ -90,7 +82,7 @@ function PaymentsContent(props) {
         <DataTable
          fixedHeader    
          columns={columns} 
-         data={rows}
+         data={payment}
          progressPending={pending}
          progressComponent={<LoaderTablePayments />}
          fixedHeaderScrollHeight="350px"   

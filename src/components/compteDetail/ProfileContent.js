@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../css/compte.css';
+import 'C:/xampp/htdocs/gym_frontend/gym-dashboard/src/css/compte.css';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 

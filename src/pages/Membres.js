@@ -5,12 +5,13 @@ import DataTable from 'react-data-table-component'
 import axios from 'axios'
 import TableLoader from '../components/TableLoader'
 import avatar from '../img/avatar.jpg'
-import CompteDetails from '../components/CompteDetails'
+import CompteDetails from '../components/compteDetail/CompteDetails'
 import AddMembreForm from '../components/AddMembreForm'
 
 function Membres() {    
 
     const [rows, setRows] = useState([])
+    const [payments, setPayments] = useState([])
     const [pending, setPending] = useState(true)
     const [search, setSearch] = useState(rows)
 
@@ -18,7 +19,7 @@ function Membres() {
     const [idmembre, setIdMembre] = useState()
     const [showCompte, setShowCompte] = useState(false)
 
-    const handleShow = filteredData => {
+    const handleShow = (filteredData) => {
         setIdMembre(filteredData.id_membre)
         setShowCompte(true)
     }     
@@ -31,7 +32,9 @@ function Membres() {
         
         await axios.get(`http://localhost:8081/api/v1/membres/all`)
         .then(res =>{
-          setRows(res.data.sort((a, b) => b.id_membre - a.id_membre))   
+          const result = res.data
+          setRows(result.sort((a, b) => b.id_membre - a.id_membre))  
+          setPayments(result.paymentsSet) 
           setPending(false)
         })
       }     
@@ -44,7 +47,7 @@ function Membres() {
         })
 
     useEffect(() => {           
-       fetchdata()              
+       fetchdata()  
     }, [])
 
     
@@ -59,7 +62,7 @@ function Membres() {
         
         {
             name: "",
-            selector: row => <img src={avatar} alt="" width="70" height="70" className="img-fluid rounded-circle img-thumbnail shadow-sm" />,    
+            selector: row => <img src={avatar} alt="profile" width="35" height="35" className="img-fluid rounded-circle img-thumbnail shadow-sm" />,    
             sortable: true,
             width: "80px"
         },
@@ -76,15 +79,15 @@ function Membres() {
             width: "120px"
         },
         {            
-            name: "Créé le",
+            name: "Ajouté le",
             selector: row => row.date_inscription,
             sortable: true,
             width: "120px"
         },
         {            
-            name: "Dérnier Paiment",
-            selector: row => row.date_update,
-            sortable: true,
+            name: "Date d'éxpriation",
+            selector: row => row.paiementsSet.pop().date_expiration,
+            sortable: true,                                                                                                         
             width: "170px"
         },
         {            
@@ -117,38 +120,39 @@ function Membres() {
     const customStyles = {
         table: {
             style:{
+                position: 'relative',
                 backgroundColor: 'var(--sidebar-color)',
-                overflow: 'hidden',
                 marginTop: '50px',
-                minWidth: '900px',
+                marginLeft: '30px',
+                width: '100%',
                 fontSize: '16px', 
                 position: 'relative'
             }            
         },
         tableWrapper: {
             style: {
-                marginLeft: '150px',
-                overflow: 'hidden',
-                width: '900px',
+                width: '100%',
             },
         },    
         responsiveWrapper: {
-            style: {},
+            style: {
+            },
         },
         headRow: {
             style: {
                 height: '40px',
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                fontSize: '15px',
+                fontSize: '13px',
                 transition: 'var(--tran-03)'
             }
         },
         rows: {
             style: {
-                height: '60px',
+                height: '40px',
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
+                fontSize: '12px',
                 transition: 'var(--tran-03)',
             },
             stripedStyle: {
@@ -160,10 +164,7 @@ function Membres() {
             style: {
                 backgroundColor: 'var(--sidebar-color)',
                 color: 'var(--text-color)',
-                transition: 'var(--tran-03)',
-                width: '910px',
-                overflow: 'hidden',
-                marginLeft: '150px'
+                transition: 'var(--tran-03)'
             }    
         }
         

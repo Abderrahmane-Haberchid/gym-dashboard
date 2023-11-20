@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import '../css/payment.css'
+import 'C:/xampp/htdocs/gym_frontend/gym-dashboard/src/css/payment.css'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
-import LoaderTablePayments from './LoaderTablePayments'
+import LoaderTablePayments from '../LoaderTablePayments'
 
 
 

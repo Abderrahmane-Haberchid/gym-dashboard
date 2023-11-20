@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/actionsContent.css'
+import 'C:/xampp/htdocs/gym_frontend/gym-dashboard/src/css/actionsContent.css'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -8,7 +8,8 @@ function AddPayment(props) {
     const id = props.membreId
     const {
         register,
-        handleSubmit
+        handleSubmit,
+        formState: {errors}
     } = useForm()
 
     const onSubmit = async (data) => {
@@ -16,12 +17,10 @@ function AddPayment(props) {
         console.log(jsonData)
         await axios.post(`http://localhost:8081/api/v1/membres/add_payment/${id}`, jsonData, {headers: {'Content-Type': 'application/json'}})
                 .then(response => {
-                    if(response.status === 200) toast.success("Paiement validé!")
+                    response.status === 200 && toast.success("Paiement validé!")
                 })
                 .catch(errors => {
-                    console.log(errors.response)
-                    if(errors.response.status === 400) toast.error("Une erreur s'est produite!")
-                    else toast.error("errors.response")
+                    errors.response.status === 400 && toast.error("Une erreur s'est produite!")
                 })
     }
 
@@ -53,10 +52,11 @@ function AddPayment(props) {
                 </div>
                 <div className='abtInput'>
                     <input 
-                        {...register("prix")}
+                        {...register("prix", {required: "Veuillez saisir le prix"})}
                         type='number' 
                         placeholder='Prix à payer' 
                         className='abtInput-text' />
+                    {errors.prix && <p className='text text-danger mt-2'>{errors.prix.message}</p>}     
                 </div>
                    
                 <div className='abtInput'>             

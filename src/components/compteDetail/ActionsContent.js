@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import '../css/actionsContent.css';
+import 'C:/xampp/htdocs/gym_frontend/gym-dashboard/src/css/actionsContent.css';
+
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
@@ -29,19 +30,17 @@ function ActionsContent(props) {
         register,
         handleSubmit,
         setValue,
-        formState: {isLoading}
+        formState: {errors}
       } = useForm()
 
       const onSubmit = async (data) => {
             const jsonData = JSON.stringify(data)
             await axios.put(`http://localhost:8081/api/v1/membres/edit/${id}`, jsonData, {headers: {'Content-Type': 'application/json'}})       
                     .then(response => {
-                        if(response.status === 202){
-                            toast.success('Membre modifié!')
-                        }                            
+                        response.status === 202 && toast.success('Membre modifié!')                           
                     })
                     .catch(errors => {
-                        toast.error("Une erreur s'est produite.")
+                        errors.data && toast.error("Une erreur s'est produite."+ errors.response.status)
                     })
       }
 
@@ -54,25 +53,28 @@ function ActionsContent(props) {
     <form className='classForm' onSubmit={handleSubmit(onSubmit)}>                  
                 <div className='nomInput'>
                     <input type='text' 
-                           {...register('nom')} 
+                           {...register('nom', {required: "Veuillez saisir le nom"})} 
                            className='nomInput-text' 
                            {...setValue('nom', membre.nom)}
                            />
+                    {errors.nom && <p className='text text-danger mt-2'>{errors.nom.message}</p>}       
                 </div>
                 <div className='prenomInput'>
                     <input type='text'
-                           {...register('prenom')}
+                           {...register('prenom', {required: "Veuillez saisir le prenom"})}
                            className='prenomInput-text' 
                            {...setValue('prenom', membre.prenom)}
                            />
+                    {errors.prenom && <p className='text text-danger mt-2'>{errors.prenom.message}</p>}       
                 </div>
                 
                 <div className='abtInput'>
                     <input type="mail" 
                             className='abtInput-text'
-                            {...register('email')}
+                            {...register('email', {required: "Veuillez saisir le nom"})}
                             {...setValue('email', membre.email)}
                             />
+                     {errors.email && <p className='text text-danger mt-2'>{errors.email.message}</p>}       
                 </div>
                 <div className='adrInput'>
                     <input type='text'

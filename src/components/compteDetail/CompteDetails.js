@@ -1,11 +1,11 @@
 import { useState, React, useEffect } from 'react'
 import axios from 'axios'
-import ProfileContent from '../components/ProfileContent'
-import ActionsContent from '../components/ActionsContent'
-import PaymentsContent from '../components/PaymentsContent'
-import AddPayment from '../components/AddPayment'
+import ProfileContent from '../compteDetail/ProfileContent'
+import ActionsContent from '../compteDetail/ActionsContent'
+import PaymentsContent from '../compteDetail/PaymentsContent'
+import AddPayment from '../compteDetail/AddPayment'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import avatar from '../img/avatar.jpg'
+import avatar from 'C:/xampp/htdocs/gym_frontend/gym-dashboard/src/img/avatar.jpg'
 import { Link } from 'react-router-dom'
 
 function CompteDetails(props) {

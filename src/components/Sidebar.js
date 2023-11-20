@@ -104,7 +104,7 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <Link className='links'>
+                    <Link to='/supplements' className='links'>
                         <i className='bx bx-baguette bx-sm icon'></i>    
                         <span className='text'>Suppléments</span>
                     </Link>

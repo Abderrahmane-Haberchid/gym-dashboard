@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import avatar from '../img/avatar.jpg'
 import Loader from './Loader';
 import axios from 'axios';
-import CompteDetails from './CompteDetails';
+import CompteDetails from '../components/compteDetail/CompteDetails';
 
 function UserCard() {
 

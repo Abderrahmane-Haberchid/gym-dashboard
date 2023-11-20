@@ -1,0 +1,75 @@
+
+
+.wrapper{
+    position: relative;
+    display: flexbox;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 200px;
+    height: 100em;
+    max-width: 1090px;
+}
+.sale-div{
+    display: flex;
+    justify-content: right; 
+    gap: 15px;
+    margin-right: 120px;
+    margin-top: 40px;
+}
+.container{    
+    max-width: 1090px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 250px;
+    gap: 15px; 
+    flex-wrap: wrap;   
+}
+.protein{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    gap: 30px;
+    color: var(--text-color);
+    background: var(--sidebar-color);
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+}
+.prot{
+    width: 50px;
+    height: 70px;
+}
+.creatine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: var(--text-color);
+    background: var(--sidebar-color);
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+}
+.vitamine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: var(--text-color);
+    background: var(--sidebar-color);
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+}
+.gainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: var(--text-color);
+    background: var(--sidebar-color);
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+}

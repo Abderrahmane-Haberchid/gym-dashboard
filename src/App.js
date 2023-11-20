@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Sidebar from './components/Sidebar'
 import Statis from './pages/Statis';
 import Membres from './pages/Membres';
+import Supplements from './pages/Supplemets';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
         <Route path="/gym-dashboard" element={<Home />} />
         <Route path="/statistiques" element={<Statis />} />
         <Route path="/membres" element={<Membres />} />
+        <Route path="/supplements" element={<Supplements />} />
       </Routes>
     </Router>  
     </div>

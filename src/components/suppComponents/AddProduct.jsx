@@ -23,7 +23,7 @@ function AddProducts(props) {
     const {
         register,
         handleSubmit,
-        formState: {isLoading}
+        formState: {errors}
       } = useForm()
 
 

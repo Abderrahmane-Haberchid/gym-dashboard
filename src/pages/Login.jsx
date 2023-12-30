@@ -1,11 +1,20 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useSignIn } from 'react-auth-kit'
+import "../css/login.css";
+import { Navigate } from 'react-router-dom';
 
-function Login() {
-  const navigate = useNavigate()
+export default function Login() {
+
+    const addActiveClass = () => {
+        document.querySelector("#container").classList.toggle('active');
+    }
+    const removeActiveClass = () => {
+        document.querySelector("#container").classList.remove('active');
+    }
+
   const {
     register,
     reset,
@@ -13,23 +22,38 @@ function Login() {
     formState: {errors}
   } = useForm();
 
-  /*const onSubmit = (dataRegister) => {
+  const onSubmitRegister = (dataRegister) => {
+
         const resgiterData = JSON.stringify(dataRegister)
+        const signIn = useSignIn()
+
         axios.post("http://localhost:8081/api/v1/auth/register", 
                   resgiterData,
                   {headers: {'content-Type': 'application/json'}}
                   )
               .then(response => {
-                response?.status === 201 && toast.success("Compe créé !")
-                        reset()
-                        
+                if(response.status === 200){ 
+                    if(signIn(
+                        {
+                            token:    response.data.token,
+                            expiresIn:response.data.expiresIn,
+                            tokenType: "Bearer",
+                            authState: response.data.authUserState
+                        }
+                    )){
+                        toast.success("blaaan")
+                        Navigate("/")
+                    }
+                    else {
+                        toast.success("mabaaanch")
+                    }
+                }
+                               
               })
-              .catch(errors => {
-                 toast.error(errors.error)
-              })
-  }*/
+              
+  }
 
-  const onSubmitLogin = (dataLogin) => {
+  /*const onSubmitLogin = (dataLogin) => {
     const loginData = JSON.stringify(dataLogin)
     axios.post("http://localhost:8081/api/v1/auth/login", 
               loginData,
@@ -43,89 +67,70 @@ function Login() {
           .catch(errors => {
              toast.error(errors.error)
           })
-}
+}*/
 
   return (
-    <div className='wrapper'>
-        <div className='left'>
-            <div className='header'>
+    
+    <div className="container" id="container">
 
+    <div className="form-container sign-up">
+        <form onSubmit={handleSubmit(onSubmitRegister)}>
+            <h1>Create Account</h1>
+            <div className="social-icons">
+                <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
             </div>
-            <div className='body'>
-               <h1>Register</h1>     
-               <div className='left'>
-            <div className='form'>
+            <span>or use your email for registeration</span>
+            <input type="text"
+                   {...register('name')} 
+                   placeholder="Name" 
+                />
 
+            <input type="mail"
+                   {...register('email')}  
+                   placeholder="Email" 
+                />
 
-                <form onSubmit={handleSubmit()}>
-                  <div className='form-control'>
-
-                    <label htmlFor='email' className='form-label'>
-                      Email Adresse:
-                    </label>
-
-                    <input 
-                        {...register("mail")}
-                        type='text' 
-                        />
-                  </div>
-                  <div className='form-control'>
-
-                    <label htmlFor='email' className='form-label'>
-                      Username:
-                    </label>
-
-                    <input 
-                        {...register("username")}
-                        type='text' 
-                        />
-                  </div>
-                  <div className='form-control'>
-
-                    <label htmlFor='password' className='form-label'>
-                      Mot de passe:
-                    </label>
-
-                    <input 
-                        {...register("assword")}
-                        type='password' 
-                        />
-                  </div>
-                  <button>Register</button>
-                </form>  
+            <input type="password" 
+                   {...register('password')} 
+                   placeholder="Password" 
+                />
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div className="form-container sign-in">
+        <form>
+            <h1>Sign In</h1>
+            <div className="social-icons">
+                <a href="#" className="icon"><i className="fa-brands fa-google-plus-g"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-facebook-f"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-github"></i></a>
+                <a href="#" className="icon"><i className="fa-brands fa-linkedin-in"></i></a>
             </div>
-        </div>
+            <span>or use your email password</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <a href="#">Forget Your Password?</a>
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div className="toggle-container">
+        <div className="toggle">
+            <div className="toggle-panel toggle-left">
+                <h1>Welcome Back!</h1>
+                <p>Enter your personal details to use all of site features</p>
+                <button className="hidden" id="login" onClick={removeActiveClass}>Sign In</button>
             </div>
-        </div>
-        <div className='right'>
-            <div className='form'>
-              <h1>Login</h1>
-
-
-                <form onSubmit={handleSubmit(onSubmitLogin)}>
-                  <div className='form-control'>
-                    <label htmlFor='email' className='form-label'>
-                      Email Adresse:
-                    </label>
-                    <input {...register("email")}
-                          type='text'
-                      />
-                  </div>
-                  <div className='form-control'>
-                    <label htmlFor='password' className='form-label'>
-                      Mot de passe:
-                    </label>
-                    <input  {...register("password")}
-                            type='password' 
-                         />
-                  </div>
-                  <button>Login</button>
-                </form>  
+            <div className="toggle-panel toggle-right">
+                <h1>Hello, Friend!</h1>
+                <p>Register with your personal details to use all of site features</p>
+                <button className="hidden" id="registerr" onClick={addActiveClass}>Sign Up</button>
             </div>
         </div>
     </div>
+</div>
+
   )
-
 }
-
-export default Login

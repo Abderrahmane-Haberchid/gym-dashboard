@@ -29,7 +29,7 @@ function AddMembreForm(props) {
                     })  
                     .catch(errors => {
                         errors?.response?.status === 302 && toast.error("Adresse mail déjà existante !")
-                        
+                        errors?.response?.status != 302 && toast.error("Une erreur générée !")
                     })
      }
 
